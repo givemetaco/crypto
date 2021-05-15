@@ -4,7 +4,7 @@ import CrawlData as cd
 import matplotlib.gridspec as gridspec
 from mpl_finance import candlestick_ohlc
 
-bitcoin=cd.Coin('ETH-USD','24h','5m')
+bitcoin=cd.Coin('ETH-USD','24h','15m')
 
 
 fig = plt.figure(figsize=(8, 5))
@@ -28,5 +28,3 @@ axes[1].bar(x, bitcoin.data.Volume, color='k', width=0.6, align='center')
 
 plt.tight_layout()
 plt.show()
-
-# plt.show()
