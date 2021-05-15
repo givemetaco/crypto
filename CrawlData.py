@@ -36,13 +36,6 @@ class Coin:
             self.data = yf.download(tickers=tickers, period=period, interval=interval)
         except:
             print("error in fetching data")
-        
-        self.datetime=self.data.index
-        self.open_data=self.data['Open']
-        self.high_data=self.data['High']
-        self.low_data=self.data['Low']
-        self.close_data=self.data['Close']
-        self.volume_data=self.data['Volume']
 
     def create_csv(self):
         """"This function generates a csv file with cryptocurrency data's"""
