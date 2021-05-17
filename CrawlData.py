@@ -42,11 +42,4 @@ class Coin:
         self.data.to_csv("CryptoData.csv")
 
 
-# 모든 Datatime 데이터를 가져오는법
-# print(data.index)
-
-# 모든 Open 데이터를 가져오는법
-# High,Low등을 가져오려면 괄호안의 Open대신 해당하는 인덱스 이름을 입력하면됨
-# data['Open']
-
 # 자세한 사항은 https://pandas.pydata.org/docs/reference/frame.html 참조
