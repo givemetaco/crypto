@@ -1,3 +1,5 @@
+import matplotlib
+from matplotlib import markers
 import matplotlib.pyplot as plt
 import numpy as np
 import CrawlData as cd
@@ -6,7 +8,7 @@ from mpl_finance import candlestick_ohlc
 
 bitcoin=cd.Coin('ETH-USD','24h','15m')
 
-
+"""
 fig = plt.figure(figsize=(8, 5))
 fig.set_facecolor('w')
 gs = gridspec.GridSpec(2, 1, height_ratios=[3, 1])
@@ -26,5 +28,17 @@ candlestick_ohlc(axes[0], dohlc, width=0.5, colorup='r', colordown='b')
 # 거래량 차트
 axes[1].bar(x, bitcoin.data.Volume, color='k', width=0.6, align='center')
 
+line_axes=fig.add_axes(bitcoin.data.index,bitcoin.data['Close'])
+
 plt.tight_layout()
+"""
+# line_fig,line_axes=plt.subplots()
+# line_axes.plot(bitcoin.data.index,bitcoin.data['Close'])
+fig,axes=plt.subplots(figsize=(9,4))
+axes.plot(bitcoin.data.index,bitcoin.data['Close'],marker=".")
+axes.set(xlabel="Date",ylabel="Price($)",title="BitCoin")
+axes.grid() 
+axes.text(bitcoin.data.index[3],bitcoin.data['Close'][3],bitcoin.data['Close'][3])
+
+
 plt.show()
