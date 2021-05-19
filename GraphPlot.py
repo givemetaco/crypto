@@ -38,7 +38,6 @@ fig,axes=plt.subplots(figsize=(9,4))
 axes.plot(bitcoin.data.index,bitcoin.data['Close'],marker=".")
 axes.set(xlabel="Date",ylabel="Price($)",title="BitCoin")
 axes.grid() 
-axes.text(bitcoin.data.index[3],bitcoin.data['Close'][3],bitcoin.data['Close'][3])
-
-
+#axes.text(bitcoin.data.index[3],bitcoin.data['Close'][3],bitcoin.data['Close'][3])
+    
 plt.show()
