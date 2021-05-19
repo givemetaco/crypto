@@ -6,7 +6,7 @@ import CrawlData as cd
 import matplotlib.gridspec as gridspec
 from mpl_finance import candlestick_ohlc
 
-bitcoin=cd.Coin('ETH-USD','24h','15m')
+bitcoin = cd.Coin('ETH-USD', '24h', '15m')
 
 """
 fig = plt.figure(figsize=(8, 5))
@@ -34,10 +34,9 @@ plt.tight_layout()
 """
 # line_fig,line_axes=plt.subplots()
 # line_axes.plot(bitcoin.data.index,bitcoin.data['Close'])
-fig,axes=plt.subplots(figsize=(9,4))
-axes.plot(bitcoin.data.index,bitcoin.data['Close'],marker=".")
-axes.set(xlabel="Date",ylabel="Price($)",title="BitCoin")
-axes.grid() 
-#axes.text(bitcoin.data.index[3],bitcoin.data['Close'][3],bitcoin.data['Close'][3])
-    
+fig, axes = plt.subplots(figsize=(9, 4))
+axes.plot(bitcoin.data.index, bitcoin.data['Close'], marker=".")
+axes.set(xlabel="Date", ylabel="Price($)", title="BitCoin")
+axes.grid()
+# axes.text(bitcoin.data.index[3],bitcoin.data['Close'][3],bitcoin.data['Close'][3])
 plt.show()

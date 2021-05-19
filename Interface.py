@@ -1,13 +1,18 @@
+from data_button import data_button
 import tkinter as tk
-from tkinter import Label, Pack, ttk
-from tkinter.constants import ANCHOR, LEFT
+from tkinter import Label, Pack, StringVar, ttk
+from tkinter.constants import ANCHOR, LEFT, N
 
 from matplotlib.pyplot import hexbin
 
+import CrawlData as cd
+
+bitcoin=cd.Coin('BTC-USD')
+
 
 root = tk.Tk()
-root.configure(width=1200, height=800)
-root.resizable(False, False)
+root.configure(width=1200, height=800) # 메인 프레임 크기 1200x800
+root.resizable(False, False) # 창 크기조절 비활성화
 root.title("crypto")
 
 s = ttk.Style()
@@ -19,6 +24,7 @@ button_frame = ttk.Frame(root)
 button_frame.configure(relief='raised', style='button.TFrame')
 button_frame.grid(row=0, column=0, sticky=tk.NSEW, columnspan=2)
 
+# 버튼프레임 안의 세가지 버튼
 
 button_1 = ttk.Button(button_frame, text="Button_1")
 button_1.grid(row=0, column=0)
@@ -42,6 +48,17 @@ s.configure('data.TFrame', background="green")
 data_frame = ttk.Frame(root)
 data_frame.configure(width=300, height=600, style='data.TFrame')
 data_frame.grid(row=1, column=1)
+
+s.configure ("Bold.TLabel", size = 40, weight = "bold")
+index_label=ttk.Label(data_frame,text=' Name    Price    Change')
+index_label.configure(background='yellow',font=("Courier", 13))
+
+index_label.place(x=0,y=0,width=300,height=50) #절대 위치를 설정하여 label 표시, data_frame내의 (0,0)위치
+
+# bitcoin_text=StringVar()
+# bitcoin_text.set('Bitcoin(BTC): '+ str(bitcoin.get_current_data()))
+# bitcoin_label=ttk.Label(data_frame,textvariable=bitcoin_text)
+# bitcoin_label.grid(row=1,column=0)
 
 # 로그가 들어갈 프레임
 

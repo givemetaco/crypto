@@ -8,10 +8,6 @@ from pandas.core.frame import DataFrame
 import yfinance as yf
 from yfinance.multi import download
 
-# Get Bitcoin data
-# 이전 24시간동안의 데이터를 15분간격으로 가져옴
-#data = yf.download(tickers='BTC-USD', period='24h', interval='5m')
-
 
 class Coin:
 
@@ -46,19 +42,23 @@ class Coin:
     # 최근 24시간동안의 데이터를 1분 간격으로 표시한 데이터를 DataFrame 형태로 돌려주는 함수
     def get_day_data(self):
         return yf.download(self.tickers, period='24h', interval='1m')
-    
+
     # 최근 1주동안의 데이터를 1시간 간격으로 표시한 데이터를 DataFrame 형태로 돌려주는 함수
     def get_weekly_data(self):
-        return yf.download(self.tickers,period='1wk',interval='1h')
+        return yf.download(self.tickers, period='1wk', interval='1h')
 
     # 최근 3달동안의 데이터를 1일 간격으로 표시한 데이터를 DataFrame 형태로 돌려주는 함수
     def get_yearly_data(self):
-        return yf.download(self.tickers,period='3m',interval='1d')
+        return yf.download(self.tickers, period='3m', interval='1d')
+
+    # 현재 코인 가격을 돌려주는 함수
+    def get_current_data(self):
+        return yf.Ticker(self.tickers).info['regularMarketPrice']
 
     # 데이터를 csv파일 형태로 만들어 저장하는 함수
     def create_csv(self):
         """"This function generates a csv file with cryptocurrency data's"""
-        #self.data.to_csv("CryptoData.csv")
+        # self.data.to_csv("CryptoData.csv")
 
 
 # 자세한 사항은 https://pandas.pydata.org/docs/reference/frame.html 참조
