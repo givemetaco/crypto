@@ -8,6 +8,12 @@ from pandas.core.frame import DataFrame
 import yfinance as yf
 from yfinance.multi import download
 
+import requests
+
+#빗썸 API사용을 위한 url정의 (추후 사용할것)
+#url='https://api.bithumb.com/public/transaction_history/BTC_KRW?count=5'
+#rep=requests.get(url).json()
+#print(rep['data'][0])
 
 class Coin:
 
