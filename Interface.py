@@ -51,7 +51,7 @@ graph_frame.grid(row=1, column=0)
 
 
 chart_type = FigureCanvasTkAgg(gp.fig, graph_frame)
-chart_type.get_tk_widget().pack()
+chart_type.get_tk_widget().place(x=0,y=0,width=900,height=600)
 
 
 
