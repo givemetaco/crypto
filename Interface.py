@@ -50,8 +50,8 @@ graph_frame.configure(width=900, height=600, style='graph.TFrame')
 graph_frame.grid(row=1, column=0)
 
 
-#chart_type = FigureCanvasTkAgg(gp.fig, graph_frame)
-#chart_type.get_tk_widget().pack()
+chart_type = FigureCanvasTkAgg(gp.fig, graph_frame)
+chart_type.get_tk_widget().pack()
 
 
 
