@@ -33,6 +33,7 @@ class Coin:
         """
 
         self.tickers = tickers
+        self.data=yf.download(self.tickers,period='24',interval='1m')
 
     # try:
     #     self.data = yf.download(tickers=tickers, period=period, interval=interval)
@@ -41,7 +42,7 @@ class Coin:
 
     # 최근 24시간동안의 데이터를 1분 간격으로 표시한 데이터를 DataFrame 형태로 돌려주는 함수
     def get_day_data(self):
-        return yf.download(self.tickers, period='24h', interval='1m')
+        return yf.download(self.tickers, period='1d', interval='1m')
 
     # 최근 1주동안의 데이터를 1시간 간격으로 표시한 데이터를 DataFrame 형태로 돌려주는 함수
     def get_weekly_data(self):

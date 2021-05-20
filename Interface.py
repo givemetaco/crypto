@@ -5,15 +5,22 @@ from tkinter.constants import ANCHOR, LEFT, N
 
 from matplotlib.pyplot import hexbin
 
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
 import CrawlData as cd
 
-bitcoin=cd.Coin('BTC-USD')
+import GraphPlot as gp
+
+bitcoin = cd.Coin('BTC-USD')
 
 
 root = tk.Tk()
-root.configure(width=1200, height=800) # 메인 프레임 크기 1200x800
-root.resizable(False, False) # 창 크기조절 비활성화
+root.configure(width=1200, height=800)  # 메인 프레임 크기 1200x800
+root.resizable(False, False)  # 창 크기조절 비활성화
 root.title("crypto")
+
+
 
 s = ttk.Style()
 s.configure('button.TFrame', background='red')
@@ -42,6 +49,12 @@ graph_frame = ttk.Frame(root)
 graph_frame.configure(width=900, height=600, style='graph.TFrame')
 graph_frame.grid(row=1, column=0)
 
+
+#chart_type = FigureCanvasTkAgg(gp.fig, graph_frame)
+#chart_type.get_tk_widget().pack()
+
+
+
 # 10가지 코인의 가격 정보가 들어갈 프레임
 
 s.configure('data.TFrame', background="green")
@@ -49,11 +62,12 @@ data_frame = ttk.Frame(root)
 data_frame.configure(width=300, height=600, style='data.TFrame')
 data_frame.grid(row=1, column=1)
 
-s.configure ("Bold.TLabel", size = 40, weight = "bold")
-index_label=ttk.Label(data_frame,text=' Name    Price    Change')
-index_label.configure(background='yellow',font=("Courier", 13))
+s.configure("Bold.TLabel", size=40, weight="bold")
+index_label = ttk.Label(data_frame, text=' Name    Price    Change')
+index_label.configure(background='yellow', font=("Courier", 13))
 
-index_label.place(x=0,y=0,width=300,height=50) #절대 위치를 설정하여 label 표시, data_frame내의 (0,0)위치
+# 절대 위치를 설정하여 label 표시, data_frame내의 (0,0)위치
+index_label.place(x=0, y=0, width=300, height=50)
 
 # bitcoin_text=StringVar()
 # bitcoin_text.set('Bitcoin(BTC): '+ str(bitcoin.get_current_data()))
