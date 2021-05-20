@@ -31,7 +31,8 @@ class Coin:
         ==========================
         https://medium.com/analytics-vidhya/python-how-to-get-bitcoin-data-in-real-time-less-than-1-second-lag-38772da43740
         """
-
+        self.info=yf.Ticker(tickers).info
+        self.name=self.info['name']
         self.tickers = tickers
         self.data=yf.download(self.tickers,period='24',interval='1m')
 
