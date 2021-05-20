@@ -3,11 +3,11 @@ from matplotlib import markers
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import numpy as np
-import CrawlData as cd
+import Coin as c
 import matplotlib.gridspec as gridspec
 from mpl_finance import candlestick_ohlc
 
-bitcoin = cd.Coin('BTC-USD')
+bitcoin = c.Coin('BTC-USD')
 
 """
 fig = plt.figure(figsize=(8, 5))

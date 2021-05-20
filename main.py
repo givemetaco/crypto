@@ -8,14 +8,13 @@ from matplotlib.pyplot import hexbin
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-import CrawlData as cd
+import Coin as c
 import GraphPlot as gp
 
-bitcoin = cd.Coin('BTC-USD')
+bitcoin = c.Coin('BTC-USD')
 
 
 root = tk.Tk()
-root.configure(width=1200, height=800)  # 메인 프레임 크기 1200x800
 root.resizable(False, False)  # 창 크기조절 비활성화
 root.title("crypto")
 
