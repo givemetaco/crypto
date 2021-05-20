@@ -10,14 +10,12 @@ from yfinance.multi import download
 
 import requests
 
-#빗썸 API사용을 위한 url정의 (추후 사용할것)
-#url='https://api.bithumb.com/public/transaction_history/BTC_KRW?count=5'
-#rep=requests.get(url).json()
-#print(rep['data'][0])
 
 class Coin:
 
     def __init__(self, tickers) -> None:
+
+
         """
         ==========================
         About tickers
@@ -67,6 +65,14 @@ class Coin:
     def create_csv(self):
         """"This function generates a csv file with cryptocurrency data's"""
         # self.data.to_csv("CryptoData.csv")
+
+    def get_transaction(self):
+        #빗썸 API사용을 위한 url정의
+        url='https://api.bithumb.com/public/transaction_history/'+self.tickers[:3]+'_KRW?count=5'
+        self.request=requests.get(url).json()
+        self.transaction=self.request['data'] # 최근 5개 거래내역을 가지고 있는 list
+        return self.transaction
+
 
 
 # 자세한 사항은 https://pandas.pydata.org/docs/reference/frame.html 참조
