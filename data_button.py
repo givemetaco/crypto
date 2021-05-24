@@ -12,5 +12,7 @@ class data_button:
     def place_button(self,x=0,y=0):
         self.button=tk.Button(self.parent,text=self.coin.name,bd=5)
         self.button.place(x=x,y=y,width=self.width,height=self.height)
-        
+    
+    # def update(self,parent)->None:
+    #     self.button['text']= 
 

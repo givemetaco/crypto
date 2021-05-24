@@ -11,6 +11,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import Coin as c
 import GraphPlot as gp
 
+
 bitcoin = c.Coin('BTC-USD')
 
 
@@ -42,9 +43,7 @@ button_3.grid(row=0, column=2)
 
 # 그래프가 들어갈 프레임
 
-#s.configure('graph.TFrame', background='blue')
 graph_frame = tk.Frame(root,width=900,height=600,bg='blue')
-#graph_frame.configure(width=900, height=600, style='graph.TFrame')
 graph_frame.grid(row=1, column=0)
 
 
@@ -75,10 +74,6 @@ index_label.place(x=0, y=0, width=300, height=50)
 btc_button=db.data_button(data_frame,bitcoin)
 btc_button.place_button(0,50)
 
-# bitcoin_text=StringVar()
-# bitcoin_text.set('Bitcoin(BTC): '+ str(bitcoin.get_current_data()))
-# bitcoin_label=ttk.Label(data_frame,textvariable=bitcoin_text)
-# bitcoin_label.grid(row=1,column=0)
 
 # 로그가 들어갈 프레임
 
