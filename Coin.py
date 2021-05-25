@@ -68,7 +68,7 @@ class Coin:
 
     def get_transaction(self):
         #빗썸 API사용을 위한 url정의
-        url='https://api.bithumb.com/public/transaction_history/'+self.tickers[:3]+'_KRW?count=5'
+        url='https://api.bithumb.com/public/transaction_history/'+self.tickers[:3]+'_KRW?count=6'
         self.request=requests.get(url).json()
         self.transaction=self.request['data'] # 최근 5개 거래내역을 가지고 있는 list
         return self.transaction

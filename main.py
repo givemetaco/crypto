@@ -1,3 +1,4 @@
+from log_label import LLabel
 import data_button as db
 import tkinter as tk
 from tkinter import Label, Pack, StringVar, ttk
@@ -83,6 +84,13 @@ btc_button.place_button(0,50)
 #아래는 tk로 프레임을 만들기 위한 코드
 log_frame = tk.Frame(root,width=900,height=200,bg='yellow')
 log_frame.grid(row=2, column=0)
+
+index_label = tk.Label(log_frame, text='TIME\t\tPRICE(KRW)\t\tVOLUME(BTC)',bd=5,font='TIMES 17')
+index_label.place(x=0, y=0, width=900, height=40)
+
+bit_log=LLabel(log_frame,bitcoin)
+bit_log.place_label(0,40)
+bit_log.updater()
 
 # 판매,구매 버튼이 들어갈 프레임
 interact_frame = tk.Frame(root,width=300,height=200,bg='pink')
