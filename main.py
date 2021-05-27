@@ -1,3 +1,5 @@
+import tkinter
+from log_label import LLabel
 import data_button as db
 import tkinter as tk
 from tkinter import Label, Pack, StringVar, ttk
@@ -11,8 +13,17 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import Coin as c
 import GraphPlot as gp
 
-bitcoin = c.Coin('BTC-USD')
 
+bitcoin = c.Coin('BTC')
+ethereum = c.Coin('ETH')
+ethereumC = c.Coin('ETC')
+dogecoin = c.Coin('DOGE')
+cardano = c.Coin('ADA')
+eos = c.Coin('EOS')
+ripple = c.Coin('XRP')
+chainlink = c.Coin('LINK')
+litecoin = c.Coin('LTC')
+bitcoinCash = c.Coin('BCH')
 
 root = tk.Tk()
 root.resizable(False, False)  # 창 크기조절 비활성화
@@ -31,8 +42,8 @@ button_frame.grid(row=0, column=0, sticky=tk.NSEW, columnspan=2)
 
 # 버튼프레임 안의 세가지 버튼
 
-button_1 = tk.Button(button_frame, text="Button_1",height=1)
-button_1.grid(row=0, column=0)
+graph_submenu_widget=tk.Menu(button_frame,tearoff=False)
+
 
 button_2 = tk.Button(button_frame, text="Button_2",height=1)
 button_2.grid(row=0, column=1)
@@ -42,15 +53,26 @@ button_3.grid(row=0, column=2)
 
 # 그래프가 들어갈 프레임
 
-#s.configure('graph.TFrame', background='blue')
 graph_frame = tk.Frame(root,width=900,height=600,bg='blue')
-#graph_frame.configure(width=900, height=600, style='graph.TFrame')
 graph_frame.grid(row=1, column=0)
 
 
 chart_type = FigureCanvasTkAgg(gp.fig, graph_frame)
 chart_type.get_tk_widget().place(x=0,y=0,width=900,height=600)
 
+
+# 로그가 들어갈 프레임
+
+#아래는 tk로 프레임을 만들기 위한 코드
+log_frame = tk.Frame(root,width=900,height=200,bg='yellow')
+log_frame.grid(row=2, column=0)
+
+index_label = tk.Label(log_frame, text='TIME\t\tPRICE(KRW)\t\tVOLUME(BTC)',bd=5,font='TIMES 17')
+index_label.place(x=0, y=0, width=900, height=40)
+
+log_label=LLabel(log_frame)
+log_label.place_label(0,40)
+# log_label.updater(bitcoin)
 
 
 # 10가지 코인의 가격 정보가 들어갈 프레임
@@ -61,33 +83,52 @@ data_frame.configure(width=300, height=600, style='data.TFrame')
 data_frame.grid(row=1, column=1)
 
 s.configure("Bold.TLabel", size=40, weight="bold")
-index_label = ttk.Label(data_frame, text=' Name    Price    Change')
+index_label = ttk.Label(data_frame, text='   Name    Price    Change',font='TIMES 15')
 index_label.configure(background='yellow', font=("Courier", 13))
 
 # 절대 위치를 설정하여 label 표시, data_frame내의 (0,0)위치
 index_label.place(x=0, y=0, width=300, height=50)
 
 # 데이터 버튼 삽입
-#아래 두줄은 절차지향 방식으로 작성한 코드
-#bit_button=tk.Button(data_frame,text=bitcoin.name,bd=10)
-#bit_button.place(x=0,y=50,width=300,height=50)
-#아래는 객체지향 방식으로 작성한 코드
-btc_button=db.data_button(data_frame,bitcoin)
+btc_button=db.data_button(data_frame,bitcoin,log_label)
 btc_button.place_button(0,50)
+btc_button.updater()
 
-# bitcoin_text=StringVar()
-# bitcoin_text.set('Bitcoin(BTC): '+ str(bitcoin.get_current_data()))
-# bitcoin_label=ttk.Label(data_frame,textvariable=bitcoin_text)
-# bitcoin_label.grid(row=1,column=0)
+eth_button=db.data_button(data_frame,ethereum,log_label)
+eth_button.place_button(0,105)
+eth_button.updater
 
-# 로그가 들어갈 프레임
+etc_button=db.data_button(data_frame,ethereumC,log_label)
+etc_button.place_button(0,160)
+etc_button.updater()
 
-#아래 두줄은 ttk로 프레임을 만들기 위해서 사용하는 코드
-#s.configure('log.TFrame', background="yellow")
-#log_frame.configure(width=900, height=200, style='log.TFrame')
-#아래는 tk로 프레임을 만들기 위한 코드
-log_frame = tk.Frame(root,width=900,height=200,bg='yellow')
-log_frame.grid(row=2, column=0)
+doge_button=db.data_button(data_frame,dogecoin,log_label)
+doge_button.place_button(0,215)
+doge_button.updater()
+
+ada_button=db.data_button(data_frame,cardano,log_label)
+ada_button.place_button(0,270)
+ada_button.updater()
+
+eos_button=db.data_button(data_frame,eos,log_label)
+eos_button.place_button(0,325)
+eos_button.updater()
+
+ripple_button=db.data_button(data_frame,ripple,log_label)
+ripple_button.place_button(0,380)
+ripple_button.updater()
+
+chainlink_button=db.data_button(data_frame,chainlink,log_label)
+chainlink_button.place_button(0,435)
+chainlink_button.updater()
+
+litecoin_button=db.data_button(data_frame,litecoin,log_label)
+litecoin_button.place_button(0,490)
+litecoin_button.updater()
+
+bch_button=db.data_button(data_frame,bitcoinCash,log_label)
+bch_button.place_button(0,545)
+bch_button.updater()
 
 # 판매,구매 버튼이 들어갈 프레임
 interact_frame = tk.Frame(root,width=300,height=200,bg='pink')
