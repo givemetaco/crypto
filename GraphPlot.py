@@ -7,7 +7,7 @@ import Coin as c
 import matplotlib.gridspec as gridspec
 from mpl_finance import candlestick_ohlc
 
-bitcoin = c.Coin('BTC-USD')
+bitcoin = c.Coin('BTC')
 
 """
 fig = plt.figure(figsize=(8, 5))
