@@ -1,13 +1,17 @@
 import matplotlib
 from matplotlib import markers
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
 import matplotlib.pyplot as plt
 import numpy as np
 import Coin as c
 import matplotlib.gridspec as gridspec
 from mpl_finance import candlestick_ohlc
+import matplotlib.animation as animation
+import time
 
-bitcoin = c.Coin('BTC')
+
+# bitcoin = c.Coin('BTC')
 
 """
 fig = plt.figure(figsize=(8, 5))
@@ -33,23 +37,48 @@ line_axes=fig.add_axes(bitcoin.data.index,bitcoin.data['Close'])
 
 plt.tight_layout()
 """
-# line_fig,line_axes=plt.subplots()
-# line_axes.plot(bitcoin.data.index,bitcoin.data['Close'])
-fig, axes = plt.subplots(figsize=(9, 4))
-axes.plot(bitcoin.get_day_data().index, bitcoin.get_day_data()['Close'])
-axes.set(xlabel="Date", ylabel="Price($)", title="BitCoin")
-axes.grid()
-# axes.text(bitcoin.data.index[3],bitcoin.data['Close'][3],bitcoin.data['Close'][3])
-#plt.show()
+# fig, axes = plt.subplots(figsize=(9, 4))
+# axes.plot(bitcoin.get_day_data().index, bitcoin.get_day_data()['Close'])
+# axes.set(xlabel="Date", ylabel="Price($)", title="BitCoin")
+
 
 class graph:
-    def __init__(self,coin) -> None:
-        self.coin=coin
-    
-    def line_graph(self,period)->tuple:
-        if period=='1d':
-            self.fig, self.axes = plt.subplots(figsize=(9, 4))
-            self.axes.plot(self.coin.get_day_data().index, self.coin.get_day_data()['Close'])
-            self.axes.set(xlabel="Date", ylabel="Price($)", title="BitCoin")
-            self.axes.grid()
-            return (self.fig,self.axes)
+    def __init__(self, coin, parent, navigation_frame) -> None:
+        self.coin = coin
+        self.current_period='d'
+        self.parent = parent
+        self.navigation_frame = navigation_frame
+        self.fig, self.axes = plt.subplots(figsize=(9, 4))
+        self.axes.plot(self.coin.get_day_data().index,
+                       coin.get_day_data()['Close'], color="blue")
+        self.axes.set(xlabel="Date", ylabel="Price($)", title=coin.tickers)
+        # self.fig.tight_layout()
+        plt.subplots_adjust(left=0.088, right=0.97, top=0.94, bottom=0.083)
+        self.canvas = FigureCanvasTkAgg(self.fig, self.parent)
+        self.canvas.draw()
+        self.canvas.get_tk_widget().place(x=0, y=0, width=900, height=570)
+        self.toolbar = NavigationToolbar2Tk(self.canvas, self.navigation_frame)
+        self.toolbar.update()
+
+    def start_ani(self):
+        ani = animation.FuncAnimation(
+            self.fig, self.change_period, interval=10000)
+
+    def update_period(self):  # 매게변수로 d,w,y 중 하나를 받는다.
+        self.axes.clear()
+        if self.current_period == 'd':
+            self.axes.plot(self.coin.get_day_data().index,
+                           self.coin.get_day_data()['Close'], color="blue")
+        elif self.current_period == 'w':
+            self.axes.plot(self.coin.get_weekly_data().index,
+                           self.coin.get_weekly_data()['Close'], color="blue")
+        elif self.current_period == 'y':
+            self.axes.plot(self.coin.get_monthly_data().index,
+                           self.coin.get_monthly_data()['Close'], color="blue")
+        
+        self.axes.set(xlabel="Date", ylabel="Price($)",
+                      title=self.coin.tickers)
+        
+        self.canvas = FigureCanvasTkAgg(self.fig, self.parent)
+        self.canvas.draw()
+        self.canvas.get_tk_widget().place(x=0, y=0, width=900, height=570)

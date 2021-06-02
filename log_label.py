@@ -24,7 +24,7 @@ class LLabel:
         self.coin=coin
 
     def updater(self):
-        self.label.after(3000,self.updater)
+        self.label.after(5000,self.updater)
         data=self.coin.get_transaction()
         self.text.set(data[0]['transaction_date']+ '\t\t' +data[0]['price']+'\t\t'+data[0]['units_traded']+'\n'+\
             data[2]['transaction_date']+ '\t\t' +data[1]['price']+'\t\t'+data[2]['units_traded']+'\n'+\
