@@ -48,15 +48,15 @@ class Coin:
 
     # 최근 24시간동안의 데이터를 1분 간격으로 표시한 데이터를 DataFrame 형태로 돌려주는 함수
     def get_day_data(self):
-        return yf.download(self.tickers+'-USD', period='1d', interval='1m')
+        return yf.download(self.tickers+'-KRW', period='1d', interval='1m')
 
     # 최근 1주동안의 데이터를 1시간 간격으로 표시한 데이터를 DataFrame 형태로 돌려주는 함수
     def get_weekly_data(self):
-        return yf.download(self.tickers+'-USD', period='1wk', interval='1h')
+        return yf.download(self.tickers+'-KRW', period='1wk', interval='1h')
 
     # 최근 3달동안의 데이터를 1일 간격으로 표시한 데이터를 DataFrame 형태로 돌려주는 함수
-    def get_yearly_data(self):
-        return yf.download(self.tickers+'-USD', period='3m', interval='1d')
+    def get_monthly_data(self):
+        return yf.download(self.tickers+'-KRW', period='3mo', interval='1d')
 
     # 현재 코인 가격을 돌려주는 함수
     def get_current_data(self):
