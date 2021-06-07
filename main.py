@@ -3,20 +3,10 @@ from log_label import LLabel
 import data_button as db
 import tkinter as tk
 from tkinter import Canvas, Label, Menu, Pack, StringVar, Toplevel, ttk
-from tkinter.constants import ANCHOR, LEFT, N
 import menu
-
-# import matplotlib
-# from matplotlib.pyplot import hexbin
-
-# import matplotlib.pyplot as plt
-# from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg,NavigationToolbar2Tk
-
-# from matplotlib.figure import Figure
 
 import Coin as c
 import GraphPlot as gp
-
 
 bitcoin = c.Coin('BTC')
 ethereum = c.Coin('ETH')
@@ -28,7 +18,6 @@ ripple = c.Coin('XRP')
 chainlink = c.Coin('LINK')
 litecoin = c.Coin('LTC')
 bitcoinCash = c.Coin('BCH')
-
 
 root = tk.Tk()
 root.resizable(False, False)  # 창 크기조절 비활성화
@@ -52,7 +41,6 @@ navigation_frame.grid(row=1, column=0)
 
 graph = gp.graph(bitcoin, graph_graph_frame, navigation_frame)
 
-
 # 메뉴가 들어갈 프레임
 
 menu_frame = ttk.Frame(root)
@@ -60,7 +48,7 @@ menu_frame.configure(relief='raised', style='button.TFrame')
 menu_frame.grid(row=0, column=0, sticky=tk.NSEW, columnspan=2)
 
 # 메뉴 객체 생성
-menu = menu.Menu_class(menu_frame,graph)
+menu = menu.Menu_class(menu_frame, graph)
 
 # 로그가 들어갈 프레임
 
@@ -73,7 +61,6 @@ index_label.place(x=0, y=0, width=900, height=40)
 
 log_label = LLabel(log_frame)
 log_label.place_label(0, 40)
-
 
 # 10가지 코인의 가격 정보가 들어갈 프레임
 
@@ -97,7 +84,7 @@ btc_button.updater()
 
 eth_button = db.data_button(data_frame, ethereum, log_label, graph)
 eth_button.place_button(0, 105)
-eth_button.updater
+eth_button.updater()
 
 etc_button = db.data_button(data_frame, ethereumC, log_label, graph)
 etc_button.place_button(0, 160)
