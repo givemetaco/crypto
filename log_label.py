@@ -10,7 +10,7 @@ class LLabel:
         self.text = tk.StringVar(parent)
 
     def place_label(self, x, y):
-        self.label = tk.Label(self.parent, textvariable=self.text, font='Helvetica 13')
+        self.label = tk.Label(self.parent, textvariable=self.text, font='Helvetica 15',justify='left')
         self.label.place(x=x, y=y, width=self.width, height=self.height)
 
     def set_coin(self, coin):
