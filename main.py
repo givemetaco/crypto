@@ -56,7 +56,7 @@ log_frame = tk.Frame(root, width=900, height=200, bg='yellow')
 log_frame.grid(row=2, column=0)
 
 index_label = tk.Label(
-    log_frame, text='TIME\t\tPRICE(KRW)\t\tVOLUME(BTC)', bd=5, font='TIMES 17')
+    log_frame, text='\tTIME\t\tPRICE(KRW)\t\tVOLUME(BTC)', bd=5, font='TIMES 17',bg='#4A4A4A',fg='white')
 index_label.place(x=0, y=0, width=900, height=40)
 
 log_label = LLabel(log_frame)
@@ -70,9 +70,8 @@ data_frame.configure(width=300, height=600, style='data.TFrame')
 data_frame.grid(row=1, column=1)
 
 s.configure("Bold.TLabel", size=40, weight="bold")
-index_label = ttk.Label(
-    data_frame, text='   Name    Price    Change', font='TIMES 15')
-index_label.configure(background='yellow', font=("Courier", 13))
+index_label = tk.Label(
+    data_frame, text='Name\tPrice\tChange', font='TIMES 15',bg='#4A4A4A',fg='white')
 
 # 절대 위치를 설정하여 label 표시, data_frame내의 (0,0)위치
 index_label.place(x=0, y=0, width=300, height=50)
