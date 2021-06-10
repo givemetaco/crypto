@@ -144,6 +144,11 @@ class graph:
         self.canvas.get_tk_widget().place(x=0, y=0, width=900, height=570)
 
     def line_chart(self):
+        self.current_type = 'line'
+        self.axes = plt.axes()
+        self.c_axes.clear()
+        self.fig.clear()
+        self.fig.add_axes(self.axes)
         if self.current_type == 'candle':
             self.current_type = 'line'
             self.axes = plt.axes()
