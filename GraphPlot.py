@@ -149,6 +149,12 @@ class graph:
         self.c_axes.clear()
         self.fig.clear()
         self.fig.add_axes(self.axes)
+        if self.current_type == 'candle':
+            self.current_type = 'line'
+            self.axes = plt.axes()
+            self.c_axes.clear()
+            self.fig.clear()
+            self.fig.add_axes(self.axes)
 
         if self.current_period == 'd':
             self.axes.clear()

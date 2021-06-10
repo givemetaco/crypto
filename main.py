@@ -38,6 +38,7 @@ def click_button_3():
         'KRW': 100_000_000
     }
 
+
     json_object = json.dumps(account, indent=4)
 
     with open('data.json', 'w') as make_file:
@@ -50,6 +51,7 @@ def click_button_3():
 def click_button_4():
     import json
     from collections import OrderedDict
+
 
     try:
         with open('data.json', 'r') as f:

@@ -26,6 +26,7 @@ class data_button:
     def place_button(self, x=0, y=0):
         self.button = tk.Button(self.parent, textvariable=self.text, bd=5,
                                 font='Helvetica 13', command=lambda: [self.plot_log(), self.change_coin(),self.show_account()])
+
         self.button.place(x=x, y=y, width=self.width, height=self.height)
 
     def updater(self):

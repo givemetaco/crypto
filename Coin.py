@@ -41,7 +41,7 @@ class Coin:
 
     # 최근 24시간동안의 데이터를 1분 간격으로 표시한 데이터를 DataFrame 형태로 돌려주는 함수
     def get_day_data(self):
-        return yf.download(self.tickers + '-USD', period='1d', interval='1m')
+        return yf.download(self.tickers + '-USD', period='1d', interval='5m')
 
     # 최근 1주동안의 데이터를 1시간 간격으로 표시한 데이터를 DataFrame 형태로 돌려주는 함수
     def get_weekly_data(self):
