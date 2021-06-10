@@ -6,7 +6,7 @@ from tkinter import Canvas, Label, Menu, Pack, StringVar, Toplevel, ttk
 from tkinter.constants import ANCHOR, LEFT, N
 import menu
 import window
-import account
+import account as act
 # import matplotlib
 # from matplotlib.pyplot import hexbin
 
@@ -18,46 +18,42 @@ import account
 import Coin as c
 import GraphPlot as gp
 
-
 from PIL import Image, ImageTk
 
+
 def click_button_3():
-
     import json
-    from collections import OrderedDict
 
-    file_data = OrderedDict()
+    account = {
+        'BTC': 0,
+        'ETH': 0,
+        'DOGE': 0,
+        'ADA': 0,
+        'XRP': 0,
+        'ETC': 0,
+        'EOS': 0,
+        'LINK': 0,
+        'LTC': 0,
+        'BCH': 0,
+        'KRW': 100_000_000
+    }
 
-    file_data["BTC"] = 0
-    file_data["ETH"] = 0
-    file_data["DOGE"] = 0
-    file_data["ADA"] = 0
-    file_data["XRP"] = 0
-    file_data["ETC"] = 0
-    file_data["EOS"] = 0
-    file_data["LINK"] = 0
-    file_data["LTC"] = 0
-    file_data["BCH"] = 0
-    file_data["KRW"] = 100_000_000
+    json_object = json.dumps(account, indent=4)
 
-    print(json.dumps(file_data, ensure_ascii=False, indent="\t"))
+    with open('data.json', 'w') as make_file:
+        make_file.write(json_object)
 
-    with open('data.json', 'w', encoding="utf-8") as make_file:
-        json.dump(file_data, make_file, ensure_ascii=False, indent = "\t")
-    
-    my_account=account.Account
-    window.run_program()
+    my_account = act.Account()
+    window.run_program(my_account)
+
 
 def click_button_4():
-
     import json
     from collections import OrderedDict
-
-    file_data = OrderedDict()
 
     try:
         with open('data.json', 'r') as f:
-            my_account=account.Account
+            my_account = act.Account
             my_account.account = json.load(f)
             print("파일이 존재합니다.")
             print(my_account.account)
@@ -65,24 +61,26 @@ def click_button_4():
     except:
         print("찾는 파일이 없습니다.")
 
-        file_data["BTC"] = 0
-        file_data["ETH"] = 0
-        file_data["DOGE"] = 0
-        file_data["ADA"] = 0
-        file_data["XRP"] = 0
-        file_data["ETC"] = 0
-        file_data["EOS"] = 0
-        file_data["LINK"] = 0
-        file_data["LTC"] = 0
-        file_data["BCH"] = 0
-        file_data["KRW"] = 100_000_000
+        account = {
+            'BTC': 0,
+            'ETH': 0,
+            'DOGE': 0,
+            'ADA': 0,
+            'XRP': 0,
+            'ETC': 0,
+            'EOS': 0,
+            'LINK': 0,
+            'LTC': 0,
+            'BCH': 0
+        }
 
-        print(json.dumps(file_data, ensure_ascii=False, indent="\t"))
+        json_object = json.dumps(account, indent=4)
 
-        with open('data.json', 'w', encoding="utf-8") as make_file:
-            json.dump(file_data, make_file, ensure_ascii=False, indent = "\t")
+        with open('data.json', 'w') as make_file:
+            make_file.write(json_object)
 
-    window.run_program()
+    window.run_program(my_account)
+
 
 root = tk.Tk()
 
@@ -90,8 +88,8 @@ label = tk.Label(root)
 root.title("BITCOIN")
 root.geometry("640x480")
 
-button_3 = tk.Button(root, text="새로하기", command = click_button_3)
-button_4 = tk.Button(root, text="이어하기", command = click_button_4)
+button_3 = tk.Button(root, text="새로하기", command=click_button_3)
+button_4 = tk.Button(root, text="이어하기", command=click_button_4)
 
 button_3.pack()
 button_4.pack()
